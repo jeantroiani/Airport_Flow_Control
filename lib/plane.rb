@@ -9,7 +9,7 @@ class Plane
 	end 
 
 	def depart_from(airport)
-		if airport.weather_condition == :sunny
+		if airport.weather == true
 			airport.parking_lot.delete self
 			@flying= true
 		else
@@ -20,7 +20,7 @@ class Plane
 	end
 
 	def arrive_to(airport)
-		if 	airport.weather_condition == :sunny
+		if 	airport.weather == true
 			airport.parking_lot << self
 			@flying= false
 		else

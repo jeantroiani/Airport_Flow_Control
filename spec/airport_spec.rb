@@ -1,16 +1,28 @@
 require 'airport'
-require "./spec/weather_spec"
+
 
 	describe Airport do
 		let(:airport) 		{Airport.new}
 
+
 		before(:each) do
-			allow(airport).to receive(:weather_stormy?).and_return(false)
+			allow(airport).to receive(:weather_condition?).and_return(true)
 		end
 
 		it'is empty when created' do
 			expect(airport.parking_lot).to eq []
 		end
+
+		it'has a maximum default capacity of 6' do
+			expect(airport.capacity).to eq(6)
+
+		end
+		
+		it'has a maximum custom capacity of 2' do
+			small_airport = Airport.new(custom_capacity: 2)
+			expect(small_airport.capacity).to eq(2)
+		end
+
 
 		it'can park a plane' do
 			plane = double :plane
@@ -18,16 +30,46 @@ require "./spec/weather_spec"
 			expect(airport.parking_lot).to eq [plane]
 
 		end
-		it'has a range of numbers' do
-			expect(range).to eq (1..5)
+	
+
+		it'randomize the range' do
+			allow(self).to receive(:rand).with(5)
+			airport.randomize
 		end
 
-		xit'knows how is the weather' do
-			weather = double :weather, condition: :sunny
-			expect(we)
-			expect(weather_condition).to eq(:sunny)
+		it'knows how is the weather is stormy' do
+		allow(airport).to receive(:weather).and_return(false)
+		expect(airport.weather).to eq false
+			
+		end
+			it'knows how is the weather is sunny' do
+		allow(airport).to receive(:weather).and_return(true)
+		expect(airport.weather).to eq true
 			
 		end
 
+		it'knows when it is full' do 
+			first_plane = double :plane
+			small_airport = Airport.new(custom_capacity: 1)
+			small_airport.land(first_plane)
+			expect(small_airport).to be_full
+
+			
+		end
+
+		it'knows when is not full' do
+			first_plane = double :plane
+			small_airport = Airport.new(custom_capacity: 4)
+			small_airport.land(first_plane)
+			expect(small_airport).to_not be_full
+		end
+
+		it'gives commands to take off after the sixth plane is parked' do
+			small_airport=Airport.new,:custom_capacity => 1
+			first_plane = double :plane
+			second_plane = double :plane
+			first_plane(small_airport)
+			expect(second_plane(small_airport))
+		end
 
 	end
