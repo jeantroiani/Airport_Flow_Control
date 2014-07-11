@@ -1,6 +1,10 @@
-require 'plane'
+require './lib/plane'
 
-	describe Plane  do
+	
+
+	describe Plane do
+
+	
 		
 		let(:landed_plane) 		{Plane.new									 }
 		let(:flying_plane)		{Plane.new(true)						 }
@@ -14,26 +18,34 @@ require 'plane'
 		end
 	
 		it 'can take off' do
-			airport = double :airport, parking_lot: []
+			airport = double :airport, parking_lot: [], weather_condition: :sunny
 			landed_plane.depart_from(airport)
 			allow(airport.parking_lot).to receive(:delete).with(self)
 			expect(landed_plane.flying?).to be true
 		end
 
 		it 'can arrive' do
-			airport = double :airport, parking_lot: []
+			airport = double :airport, parking_lot: [], weather_condition: :sunny
 			flying_plane.arrive_to(airport)
 			allow(airport.parking_lot).to receive(:<<).with(self)
 			expect(landed_plane.flying?).to be false
 
 		end
+		
+		it'cannot depart if the weather is bad' do
+			weather = double :weather
+			airport = double :airport, weather_condition: :stormy
+			landed_plane.depart_from(airport)
+			expect(landed_plane.flying?).to be false
+		end
 
-		# xit'has a flying status equal to true, after taking off' do
-		# 	landed_plane
-		# 	airport = double :airport
-		# 	allow(airport.take_off(landed_plane))
-		# 	expect(landed_plane.flying).to be true
-		# end
+		it'cannot arrive if the weather is bad' do
+			weather = double :weather
+			airport = double :airport, weather_condition: :stormy
+			flying_plane.arrive_to(airport)
+			expect(flying_plane.flying?).to be true
+		end
+
 
 
 	end
