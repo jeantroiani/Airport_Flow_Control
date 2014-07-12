@@ -64,12 +64,16 @@ require 'airport'
 			expect(small_airport).to_not be_full
 		end
 
-		it'gives commands to take off after the sixth plane is parked' do
-			small_airport=Airport.new,:custom_capacity => 1
+		xit'gives commands to take off after the sixth plane is parked' do
+			small_airport= Airport.new(custom_capacity: 3)
 			first_plane = double :plane
 			second_plane = double :plane
-			first_plane(small_airport)
-			expect(second_plane(small_airport))
-		end
+			first_plane.arrive_to(small_airport)
+			second_plane.arrive_to(small_airport)
+			# small_airport.clear_the_airport
+			# (small_airport.capacity).to eq []
+			
+			end
+		
 
 	end

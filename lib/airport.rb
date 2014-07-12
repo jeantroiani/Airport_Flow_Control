@@ -1,5 +1,7 @@
 require './lib/weather'
+
 DEFAULT_CAPACITY= 6
+
 	class Airport
 
 		include Weather
@@ -25,5 +27,4 @@ DEFAULT_CAPACITY= 6
 			parking_lot.count == capacity
 		end
 		
-
 	end

@@ -4,15 +4,14 @@ module Weather
 		rand(5)
 	end
 
-	
 	def weather
 	 if randomize > 1
-	 	 return true
+	 	 	puts "allowed to continue"
+	 	 	return true
 		else 
+			puts "abort maneuver, the weather is not helping."
 			false
 		end
-
 	end
-
 
 end

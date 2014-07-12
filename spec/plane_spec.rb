@@ -43,7 +43,7 @@ require './lib/plane'
 			flying_plane.arrive_to(airport)
 			expect(flying_plane.flying?).to be true
 		end
-
+					
 
 
 	end
