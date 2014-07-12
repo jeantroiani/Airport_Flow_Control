@@ -20,11 +20,17 @@ DEFAULT_CAPACITY= 6
 		end
 
 		def land(plane)
+			clear_parking_lot if full?
 			@parking_lot << plane
 		end
 
 		def full?
 			parking_lot.count == capacity
+		end
+		
+		def clear_parking_lot
+				parking_lot.each do|plane| plane.depart_from(self)end
+					parking_lot.clear			
 		end
 		
 	end

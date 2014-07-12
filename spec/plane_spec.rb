@@ -4,11 +4,11 @@ require './lib/plane'
 
 	
 		
-		let(:landed_plane) 		{Plane.new									 }
-		let(:flying_plane)		{Plane.new(true)						 }
+		let(:landed_plane) 		{Plane.new(false)	}
+		let(:flying_plane)		{Plane.new				}
 
-		it 'has a non flying status when created' do
-			expect(landed_plane.flying?).not_to be true
+		it 'has a flying status when created' do
+			expect(flying_plane.flying?).to be true
 		end
 		
 		it ' can be flying' do
@@ -42,6 +42,7 @@ require './lib/plane'
 			airport = double :airport, weather: false
 			flying_plane.arrive_to(airport)
 			expect(flying_plane.flying?).to be true
+		
 		end
 					
 

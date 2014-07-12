@@ -1,6 +1,6 @@
 class Plane
 
-	def initialize(flying=false)
+	def initialize(flying=true)
 		@flying= flying
 	end
 	
@@ -15,8 +15,6 @@ class Plane
 		else
 			@flying = false
 		end
-		# airport.parking_lot.delete self unless airport.weather_stormy?
-		# @flying= true
 	end
 
 	def arrive_to(airport)
