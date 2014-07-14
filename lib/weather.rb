@@ -9,7 +9,7 @@ module Weather
 	 	 	puts "allowed to continue"
 	 	 	return true
 		else 
-			puts "abort maneuver, the weather is not helping."
+			puts "abort manoeuvrer, the weather is not helping."
 			false
 		end
 	end

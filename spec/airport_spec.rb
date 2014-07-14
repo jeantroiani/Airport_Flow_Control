@@ -64,7 +64,19 @@ require 'airport'
 			expect(small_airport).to_not be_full
 		end
 
-		it'gives commands to take off after the sixth plane is parked' do
+
+
+		it'gives you an random number from your range' do
+			allow(airport).to receive(:randomize) {3}
+		end
+
+		it'tells you if is sunny' do
+			allow(airport).to receive(:randomize).and_return(2)
+			expect(airport.weather).to be true
+			
+		end
+
+		xit'gives commands to take off after the sixth plane is parked' do
 			first_plane = double :plane
 			second_plane = double :plane
 			small_airport= Airport.new(custom_capacity: 1)
@@ -82,7 +94,6 @@ require 'airport'
 			airport.clear_parking_lot
 			expect(small_airport.parking_lot.count).to eq 0
 		end
-
 		
 
 	end
